@@ -1,6 +1,9 @@
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include"estructuraspedido.h"
+#include"hilopedidos.h"
+
 #include<QFile>
 #include <QStringList>
 #include<QMessageBox>
@@ -17,8 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //Globales
     listaGlobal = new estructurasPedido::ListaPedidosEspeciales;
     colaGlobal = new estructurasPedido::ColaPedidos;
+
+    //Hilos
+    //hiloPedidos hilo1;
 
 }
 
@@ -162,4 +170,23 @@ void MainWindow::on_desplegar_clicked()
 void MainWindow::on_listdir_clicked()
 {
     listdir("C:\\Users\\mauar\\Desktop\\CODE\\Proyecto_ED_BabiesFactory\\pedidosEspeciales",colaGlobal,listaGlobal);
+}
+
+void MainWindow::on_botonInicioPedidos_clicked()
+{
+    //si detengo y luego corro esta de nuevo, se reinician variables
+    this->hilo1.__init__();
+    this->hilo1.start();
+}
+
+void MainWindow::on_botonDetenerPedidos_clicked()
+{
+    this->hilo1.detener();
+}
+
+void MainWindow::on_botonContinuarPedidos_clicked()
+{
+    //continuar mantiene el valor de las variables de antes
+    this->hilo1.continuar();
+    this->hilo1.start(); // creo es necesario..
 }

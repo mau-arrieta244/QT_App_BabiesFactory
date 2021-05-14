@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     estructuraspedido.cpp \
+    hilopedidos.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     estructuraspedido.h \
+    hilopedidos.h \
     mainwindow.h
 
 FORMS += \
